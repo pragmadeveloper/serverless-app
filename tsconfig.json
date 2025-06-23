@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",             /* Especifica el sistema de módulos para la salida JS. */
+    "target": "es2018",               /* Especifica la versión de ECMAScript para el código JS de salida. Lambda soporta ES2018 o superior. */
+    "lib": ["es2018"],                /* Incluye bibliotecas de declaración para el entorno de destino. */
+    "declaration": true,              /* Genera archivos .d.ts para tus módulos. */
+    "outDir": ".build",               /* Directorio de salida para los archivos JS compilados. */
+    "strict": true,                   /* Habilita todas las opciones de verificación de tipos estrictas. */
+    "noImplicitAny": true,            /* Lanza un error en expresiones y declaraciones con un tipo `any` implícito. */
+    "strictNullChecks": true,         /* Habilita la comprobación estricta de nulos. */
+    "noImplicitThis": true,           /* Lanza un error en expresiones `this` con un tipo `any` implícito. */
+    "alwaysStrict": true,             /* Analiza en modo estricto y emite "use strict" para cada archivo. */
+    "noUnusedLocals": true,           /* Reporta errores sobre variables locales no usadas. */
+    "noUnusedParameters": true,       /* Reporta errores sobre parámetros no usados en funciones. */
+    "noImplicitReturns": true,        /* Lanza un error si no todos los caminos de retorno de la función devuelven un valor. */
+    "noFallthroughCasesInSwitch": true,/* Lanza un error para casos `switch` que no terminan correctamente. */
+    "esModuleInterop": true,          /* Habilita la interoperabilidad de módulos CommonJS y ES. */
+    "resolveJsonModule": true,        /* Permite importar módulos con extensión .json. */
+    "forceConsistentCasingInFileNames": true /* Prohíbe referencias inconsistentes al mismo archivo. */
+  },
+  "include": [
+    "src/**/*.ts"                     /* Incluye todos los archivos .ts dentro de la carpeta 'src'. */
+  ],
+  "exclude": [
+    "node_modules"                    /* Excluye el directorio node_modules de la compilación. */
+  ]
+}
