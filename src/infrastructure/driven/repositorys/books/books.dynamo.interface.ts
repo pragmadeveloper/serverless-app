@@ -1,13 +1,8 @@
-import { CreateBookModel } from "../../../../domain/models/book.model";
+import { BookModel } from "../../../../domain/models/book.model";
 
 
 export interface IbookRepository {
-    createBook({documentTypeAndNumber,title,description}: 
-      {
-        documentTypeAndNumber: string
-        title: string
-        description: string
-      }): Promise<CreateBookModel>
-    getPostsByUser(userId: string): Promise<CreateBookModel[]>
-    GetAllPosts(): Promise<CreateBookModel[]>
+    createBook({title, autor, year}: {title: string, autor: string, year: number}): Promise<BookModel>
+    getBookById(id: string): Promise<BookModel[]>
+    getAllBook(): Promise<BookModel[]>
 }

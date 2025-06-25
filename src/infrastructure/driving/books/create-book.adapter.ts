@@ -1,5 +1,5 @@
 import { APIGatewayProxyEventV2 } from "aws-lambda";
-import { PostDynamoDBRepository } from "../../driven/repositorys/books/books.dynamo.repository";
+import { BookDynamoDBRepository } from "../../driven/repositorys/books/books.dynamo.repository";
 import { CreateBooktUseCase } from "../../../domain/usecases/create-book.usecase";
 import { extractBody } from "../../../utils/utils";
 

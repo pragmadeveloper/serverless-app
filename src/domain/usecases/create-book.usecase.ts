@@ -1,14 +1,14 @@
 import { Messages } from '../../constants/messages';
 import { ServiceUnavailableError } from '../../utils/service-unavailable-error';
 import { ValidationError } from '../../utils/validation-error';
-import { CreateBookModel } from '../models/book.model';
+import { BookModel } from '../models/book.model';
 import { IbookRepository } from '../../infrastructure/driven/repositorys/books/books.dynamo.interface';
 
 
 export class CreateBooktUseCase {
   constructor (private readonly bookRespository: IbookRepository) {}
 
-  async invoke (book: CreateBookModel) {
+  async invoke (book: BookModel) {
     try {
 
 

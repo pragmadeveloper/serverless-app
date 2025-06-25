@@ -1,5 +1,6 @@
-export interface CreateBookModel {
-  documentTypeAndNumber: string
+export interface BookModel {
+  id: string
   title: string,
-  description: string
+  autor: string,
+  year: number,
 }
