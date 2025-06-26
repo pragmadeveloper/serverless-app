@@ -10,11 +10,11 @@ export class BookDynamoDBRepository implements IbookRepository {
   async createBook({ title, autor, year }: {title: string,autor: string, year: number}): Promise<BookModel> {
     
     try {
-      const postUuid = uuidv4();
+      const bookUuid = uuidv4();
       const params = {
-        TableName: 'posts-dynamo-table',
+        TableName: 'book-dynamo-table',
         Item: {
-          postIdentification: postUuid,
+          bookIdentification: bookUuid,
           title,
           autor,
           year
@@ -22,25 +22,20 @@ export class BookDynamoDBRepository implements IbookRepository {
       };
       await dynamoClient.send(new PutCommand(params))
 
-      return {
-        id: postUuid,
-        title,
-        autor,
-        year
-      };
+      return {id: bookUuid,title,autor,year}
+      
     } catch (error) {
-      console.log("create post error: ", error);
+      console.log("create book error: ", error);
       throw new Error(Messages.SERVICE_UNAVAILABLE);
     }
   }
 
-  async getBookById(documentTypeAndNumber: string): Promise<BookModel[]> {
+  async getBookById(bookId: string): Promise<BookModel[]> {
     try {
       const params = {
-        TableName: 'posts-dynamo-table',
-        KeyConditionExpression: '#documentTypeAndNumber = :documentTypeAndNumber',
-        ExpressionAttributeNames: { '#documentTypeAndNumber': 'documentTypeAndNumber' },
-        ExpressionAttributeValues: { ':documentTypeAndNumber': documentTypeAndNumber }
+        TableName: 'book-dynamo-table',
+        KeyConditionExpression: '#bookId = :bookId',
+        ExpressionAttributeNames: {'#bookId': bookId},
       };
       const Items = await dynamoClient.send(new QueryCommand(params));
       if (
@@ -57,17 +52,17 @@ export class BookDynamoDBRepository implements IbookRepository {
 
   async getAllBook(): Promise<BookModel[]> {
     try {
-      const postsFound = await dynamoClient.send(
+      const booksFound = await dynamoClient.send(
         new ScanCommand({
           TableName: "posts-dynamo-table",
         })
       );
 
-      if (!postsFound.Items) {
+      if (!booksFound.Items) {
         return [];
       }
-      const posts = postsFound.Items;
-      return posts as unknown as BookModel[];
+      const books = booksFound.Items;
+      return books as unknown as BookModel[];
     } catch (error) {
       console.log("getAllposts error: ", error);
       throw new Error(Messages.SERVICE_UNAVAILABLE);
