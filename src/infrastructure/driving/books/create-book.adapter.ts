@@ -8,14 +8,15 @@ const bookCreateUseCase = new CreateBooktUseCase(bookRespository)
 
 export const createBookHttpAdapter = async (_event: APIGatewayProxyEventV2) => {
   try {
-    
-    const {title,autor, year} = extractBody(_event)
+    //console.log('ingreso a adapter');
+    const {title,author, year} = extractBody(_event)
 
-    const bookCreated = await bookCreateUseCase.invoke({title,autor,year})
+    const bookCreated = await bookCreateUseCase.invoke({title,author,year})
 
     return bookCreated
   
 } catch (error: any) {
+     console.log('error adapter');
     throw new Error(error.message)
   }
 }

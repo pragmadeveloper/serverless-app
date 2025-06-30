@@ -9,6 +9,9 @@ provider:
   runtime: nodejs18.x # El entorno de ejecución para tus funciones (Node.js versión 18.x)
   region: us-east-1 # La región de AWS donde se desplegará tu servicio. ¡Cámbiala a tu preferida!
   # Puedes añadir otras configuraciones aquí, como variables de entorno, permisos IAM, etc.
+  environment:
+    TABLE_NAME: books_table
+  role: arn:aws:iam::522167228283:role/LambdaExecutionRole-BooksDynamoDBApp  
   httpApi:
     cors: true # Habilita CORS para tu API Gateway (útil para frontend)
 
@@ -25,10 +28,27 @@ functions:
           path: /hello # La ruta URL que activará esta función
           method: get # El método HTTP (GET, POST, PUT, DELETE, ANY)
           # Puedes añadir más eventos aquí, como SQS, S3, Cron, etc.
-  goodbye: # Otra función de ejemplo
-    handler: handler.goodbye
-    description: Una función para despedirse.
+  create-book:
+    handler: src/handlers/create-book.handler
     events:
-      - httpApi:
-          path: /goodbye
-          method: post # Esta función responderá a solicitudes POST
+      - http:
+          path: /create-book
+          method: post
+  get-all-books:
+    handler: src/handlers/get-all-books.handler
+    events:
+      - http:
+          path: get-books
+          method: get
+  get-book-by-id:
+    handler: src/handlers/get-book-by-id.handler
+    events:
+      - http:
+          path: get-book
+          method: get        
+  update-book-by-id:
+    handler: src/handlers/update-book-by-id.handler
+    events:
+      - http:
+          path: update-book
+          method: put               

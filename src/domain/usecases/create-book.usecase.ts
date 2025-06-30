@@ -10,9 +10,8 @@ export class CreateBooktUseCase {
   constructor (private readonly bookRespository: IbookRepository) {}
 
   async invoke (book: CreateBookModel) {
-
     try {
-
+      console.log('ingreso a usecase');
       const newbook = await this.bookRespository.createBook(book)
 
       return newbook

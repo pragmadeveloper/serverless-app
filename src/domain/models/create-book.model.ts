@@ -1,5 +1,5 @@
 export interface CreateBookModel {
   title: string,
-  autor: string,
+  author: string,
   year: number,
 }

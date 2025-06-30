@@ -2,7 +2,8 @@ import { BookModel } from "../../../../domain/models/book.model";
 
 
 export interface IbookRepository {
-    createBook({title, autor, year}: {title: string, autor: string, year: number}): Promise<BookModel>
+    createBook({title, author, year}: {title: string, author: string, year: number}): Promise<BookModel>
     getBookById(id: string): Promise<BookModel[]>
-    getAllBook(): Promise<BookModel[]>
+    getAllBooks(): Promise<BookModel[]>
+    updateBookById(id: string, {title, author, year}: {title: string, author: string, year: number}): Promise<BookModel>
 }

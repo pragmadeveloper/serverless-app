@@ -8,13 +8,13 @@ import { httpResponses } from '../utils/http-responses'
 export const handler = async (event: APIGatewayProxyEventV2) => {
   
   try {
-
+    console.log('ingreo a handler');
     const createBook = await createBookHttpAdapter(event)
-
+    
     return responseMessage({statusCode: StatusCodes.OPERATION_SUCCESSFUL,body: httpResponses._200_OK(createBook)})
   
   } catch (error: any) {
-
+  console.log('error handler', error);
     if (error.message === 'Must specify required data') {
       return responseMessage({
         statusCode: StatusCodes.OPERATION_SUCCESSFUL,
