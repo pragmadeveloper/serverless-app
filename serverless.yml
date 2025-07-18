@@ -50,4 +50,22 @@ functions:
     events:
       - http:
           path: update-book
-          method: put               
+          method: put 
+  create-user:
+    handler: src/handlers/create-user.handler
+    events:
+      - http:
+          path: /create-user
+          method: post
+  get-all-users:
+    handler: src/handlers/get-all-users.handler
+    events:
+      - http:
+          path: get-users
+          method: get  
+  get-user-by-id:
+    handler: src/handlers/get-user-by-id.handler
+    events:
+      - http:
+          path: get-user
+          method: get               
