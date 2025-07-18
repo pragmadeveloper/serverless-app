@@ -9,9 +9,8 @@ provider:
   runtime: nodejs18.x # El entorno de ejecución para tus funciones (Node.js versión 18.x)
   region: us-east-1 # La región de AWS donde se desplegará tu servicio. ¡Cámbiala a tu preferida!
   # Puedes añadir otras configuraciones aquí, como variables de entorno, permisos IAM, etc.
-  environment:
-    TABLE_NAME: books_table
-  role: arn:aws:iam::522167228283:role/LambdaExecutionRole-BooksDynamoDBApp  
+  stage: dev # Entorno de despliegue (dev, prod, staging, etc.)
+  role: arn:aws:iam::522167228283:role/LambdaExecutionRole-BooksDynamoDBApp.
   httpApi:
     cors: true # Habilita CORS para tu API Gateway (útil para frontend)
 
